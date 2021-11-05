@@ -1,0 +1,49 @@
+[System]
+Name='fuzzyRobot2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='theta'
+Range=[-1 1]
+NumMFs=3
+MF1='NE':'trimf',[-1.8 -1 0]
+MF2='ZE':'trimf',[-1 0 1]
+MF3='PO':'trimf',[0 1 1.8]
+
+[Input2]
+Name='theta-dot'
+Range=[-1 1]
+NumMFs=3
+MF1='NE':'trimf',[-1.8 -1 0]
+MF2='ZE':'trimf',[-1 0 1]
+MF3='PO':'trimf',[0 1 1.8]
+
+[Output1]
+Name='moment'
+Range=[-1 1]
+NumMFs=5
+MF1='Ne-Strong':'trimf',[-1.795 -1 -0.5]
+MF2='No-Control':'trimf',[-0.5 0 0.5]
+MF3='Pos-Strong':'trimf',[0.505291005291006 1.00529100529101 1.80529100529101]
+MF4='Ne-Weak':'trimf',[-1 -0.5 0]
+MF5='Pos-Weak':'trimf',[0 0.5 1]
+
+[Rules]
+1 1, 3 (1) : 1
+1 2, 5 (1) : 1
+1 3, 2 (1) : 1
+2 1, 5 (1) : 1
+2 2, 2 (1) : 1
+2 3, 4 (1) : 1
+3 1, 2 (1) : 1
+3 2, 4 (1) : 1
+3 3, 1 (1) : 1
